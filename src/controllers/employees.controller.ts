@@ -12,12 +12,13 @@ export class EmployeesController {
   }
 
   @Post()
-  async create(@Body() employee: any): Promise<string> {
+  async create(@Body() employee: any): Promise<any> {
     try {
       const result = await this.employeesService.create(employee);
-      return 'Guardado correctamente';
+      //return 'Employee Guardado correctamente';
+      return result;
     } catch (error) {
-      throw new HttpException('Error al guardar la compañía', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException('Error al guardar Employee', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

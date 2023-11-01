@@ -7,13 +7,13 @@ export class CompanyController {
   constructor(private companyService: CompanyService) { }
 
   @Get()
-  async findAll(): Promise<any[]> {
-    return await this.companyService.findAll();
+  async listCompanyEmployees(): Promise<any[]> {
+    return this.companyService.listCompanyEmployees();
   }
 
   @Get('list')
-  async listCompanyEmployees(): Promise<any[]> {
-    return this.companyService.listCompanyEmployees();
+  async findAll(): Promise<any[]> {
+    return await this.companyService.findAll();
   }
 
   @Get('/:id')
@@ -22,12 +22,13 @@ export class CompanyController {
   }
 
   @Post()
-  async create(@Body() company: any): Promise<string> {
+  async create(@Body() company: any): Promise<any> {
     try {
       const result = await this.companyService.create(company);
-      return 'Guardado correctamente';
+      //return 'Company guardado correctamente';
+      return result;
     } catch (error) {
-      throw new HttpException('Error al guardar la compañía', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException('Error al guardar Company', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
