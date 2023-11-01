@@ -28,25 +28,11 @@ export class CompanyService {
         return companies;
     }
 
-    /*async listCompanyEmployees2(companyId: any): Promise<any[]> {
-        console.log("Recibiendo company_-", companyId.id)
-        var company = await this.companyRepo
-            .createQueryBuilder('company')
-            .leftJoinAndSelect('company.employees', 'employees')
-            .getMany();
-
-        console.log(company);
-        //const companyEmployees = company.filter(x => x.idCompany === companyId);
-        const filteredCompanies = company.filter(company => company.idCompany === 5);
-        console.log(filteredCompanies);
-        return filteredCompanies;
-    }*/
-
-    async listCompanyEmployees2(companyId: any): Promise<Company | undefined> {
+    async listCompanyEmployeesByCompany(companyId: any): Promise<Company | undefined> {
         const companyIdd = companyId.id;
         const company = await this.companyRepo.createQueryBuilder('company')
             .leftJoinAndSelect('company.employees', 'employee')
-            .where('company.idCompany = :companyIdd',  {companyIdd} )
+            .where('company.id = :companyIdd',  {companyIdd} )
             .getOne();
         
         return company;

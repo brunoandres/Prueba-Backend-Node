@@ -6,7 +6,7 @@ export class Company {
 
   // Modificado
   @PrimaryGeneratedColumn()
-  idCompany: number;
+  id: number;
 
   @Column({ nullable: false, unique: true })
   name: string;

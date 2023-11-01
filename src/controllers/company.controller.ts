@@ -18,7 +18,7 @@ export class CompanyController {
 
   @Get('/:id')
   async listCompanyEmployeesFindByCompany(@Param() id: any){    
-    return this.companyService.listCompanyEmployees2(id);
+    return this.companyService.listCompanyEmployeesByCompany(id);
   }
 
   @Post()
